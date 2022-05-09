@@ -27,7 +27,7 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 
 apt-get $APT_OPTIONS update | indent
 
-echo "Installing ffmpeg | arrow
+echo "Installing ffmpeg" | arrow
 
 apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends ffmpeg | indent
 
