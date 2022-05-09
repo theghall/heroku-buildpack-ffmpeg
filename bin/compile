@@ -27,9 +27,9 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 
 apt-get $APT_OPTIONS update | indent
 
-echo "Installing ffmpeg" | arrow
+echo "Installing ffmpeg plus addl packages" | arrow
 
-apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx6 ffmpeg | indent
+apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx6 libusb-1.0-0 ffmpeg | indent
 
 mkdir -p $BUILD_DIR/.apt
 
@@ -39,5 +39,4 @@ done
 
 
 echo "Testing ffmpeg installation" | arrow
-export LD_LIBRARY_PATH="$BUILD_DIR/$LIB_PATH:$LD_LIBRARY_PATH"
-$BUILD_DIR/$BIN_PATH/ffmpeg -version | indent
+ffmpeg -version | indent
