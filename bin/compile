@@ -29,7 +29,7 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ffmpeg plus addl packages" | arrow
 
-apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx6 libusb-1.0-0 ffmpeg | indent
+apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx6 libusb-1.0 libusb-1.0-0 ffmpeg | indent
 
 mkdir -p $BUILD_DIR/.apt
 
