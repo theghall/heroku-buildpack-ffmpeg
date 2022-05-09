@@ -6,8 +6,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 SOURCE_LIST=`dirname $0`/../etc/sources.list
 BIN_PATH=.apt/usr/bin
-LIB_PATH=.apt/usr/lib/x86_64-linux-gnu/
-ETC_PATH=.apt/etc/ffmpeg
+LIB_PATH=.apt/usr/lib/x86_64-linux-gnu/:.apt/lib/x86_64-linux-gnu
 
 indent() {
   sed -u 's/^/       /'
@@ -29,7 +28,7 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ffmpeg plus addl packages" | arrow
 
-apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx6 libusb-1.0 libusb-1.0-0 ffmpeg | indent
+apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx6 libusb-1.0-0 ffmpeg | indent
 
 mkdir -p $BUILD_DIR/.apt
 
@@ -39,4 +38,5 @@ done
 
 
 echo "Testing ffmpeg installation" | arrow
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$LIB_PATH"
 ffmpeg -version | indent
