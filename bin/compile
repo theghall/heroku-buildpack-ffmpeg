@@ -29,7 +29,7 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ffmpeg" | arrow
 
-apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx ffmpeg | indent
+apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx6 ffmpeg | indent
 
 mkdir -p $BUILD_DIR/.apt
 
