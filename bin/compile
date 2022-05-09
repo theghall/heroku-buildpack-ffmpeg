@@ -7,7 +7,7 @@ CACHE_DIR=$2
 SOURCE_LIST=`dirname $0`/../etc/sources.list
 BIN_PATH=.apt/usr/bin
 LIB_PATH=.apt/usr/lib/x86_64-linux-gnu/
-ETC_PATH=.apt/etc/timidity
+ETC_PATH=.apt/etc/ffmpeg
 
 indent() {
   sed -u 's/^/       /'
@@ -29,7 +29,7 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ffmpeg" | arrow
 
-apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends ffmpeg | indent
+apt-get $APT_OPTIONS -y -d install --reinstall --no-install-recommends libvpx ffmpeg | indent
 
 mkdir -p $BUILD_DIR/.apt
 
@@ -38,6 +38,6 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
 done
 
 
-echo "Testing timidity installation" | arrow
+echo "Testing ffmpeg installation" | arrow
 export LD_LIBRARY_PATH="$BUILD_DIR/$LIB_PATH:$LD_LIBRARY_PATH"
 $BUILD_DIR/$BIN_PATH/ffmpeg -version | indent
